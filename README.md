@@ -68,6 +68,6 @@ The example BPMN process model automatically sets the necessary input process va
 
 To run the examples, just launch `CamundaApplication.java`. This will boot up a Camunda Platform 7 process engine, ready to
 evaluate decisions ([via REST API](https://docs.camunda.org/rest/camunda-bpm-platform/7.19/#tag/Decision-Definition/operation/evaluateDecisionByKey), for method 1 & 2)
-and start process instances ([via REST API](https://docs.camunda.org/rest/camunda-bpm-platform/7.19/#tag/Process-Definition/operation/startProcessInstanceByKey) or Tasklist).
+and start process instances ([via REST API](https://docs.camunda.org/rest/camunda-bpm-platform/7.19/#tag/Process-Definition/operation/startProcessInstanceByKey) or Tasklist, for method 3).
 
 The unit tests can be run directly from `ReusableDecisionTest.java`.
