@@ -42,7 +42,7 @@ An example implementation for this method can be found here:
 
 * **DMN Files:** `src\main\resources\plugin`
 * **Process Engine Plugin:** `src\main\java\org\camunda\bpm\example\dmn\reusabledecision\juel`
-* **Unit Test:** `src\test` (*testReusableDecision_viaPluging*)
+* **Unit Test:** `src\test` (*testReusableDecision_viaPlugin*)
 
 To evaluate one of the two main decisions ("Customer Acceptance Decision" & "Customer Risk Message")
 manually, use
