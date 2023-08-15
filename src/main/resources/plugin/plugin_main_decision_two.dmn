@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="customerRiskMessageDRD" name="Customer Risk Message DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.14.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.19.0">
+  <decision id="plugin_customerRiskMessage" name="Customer Risk Message">
+    <variable id="InformationItem_065b9gp" name="riskMessage" typeRef="string" />
+    <literalExpression id="LiteralExpression_1r4dtmp" expressionLanguage="juel">
+      <text>dmn("plugin_customerRiskDecision", variableContext) == "high" ? "The customer has a high risk." : "The customer has an acceptable risk."</text>
+    </literalExpression>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape id="DMNShape_1mkkse5" dmnElementRef="plugin_customerRiskMessage">
+        <dc:Bounds height="80" width="180" x="160" y="80" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

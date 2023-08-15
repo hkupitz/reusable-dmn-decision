@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="customerRiskDRD" name="Customer Risk DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.14.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.19.0">
+  <decision id="plugin_customerRiskDecision" name="Customer Risk">
+    <decisionTable id="DecisionTable_0z7plry">
+      <input id="Input_1" label="Customer Type">
+        <inputExpression id="InputExpression_1" typeRef="string" expressionLanguage="juel">
+          <text>customerType</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1kvhfmi" label="Customer History">
+        <inputExpression id="LiteralExpression_0omrarw" typeRef="string" expressionLanguage="juel">
+          <text>customerHistory</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Risk" name="risk" typeRef="string" />
+      <rule id="DecisionRule_0poip0z">
+        <inputEntry id="UnaryTests_0r7lsqk">
+          <text>"special"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_037gysg">
+          <text>"bad"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0c35jof">
+          <text>"medium"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0l1npf3">
+        <inputEntry id="UnaryTests_0l441tb">
+          <text>"special"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_126kxib">
+          <text>"okay", "good"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0jkjygx">
+          <text>"low"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0kmfgw0">
+        <inputEntry id="UnaryTests_12xoll6">
+          <text>"normal"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_062j9wb">
+          <text>"bad"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_17wkhms">
+          <text>"high"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_03k05wp">
+        <inputEntry id="UnaryTests_1lvsip8">
+          <text>"normal"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0xikw53">
+          <text>"okay"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_026lzri">
+          <text>"medium"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1cif5of">
+        <inputEntry id="UnaryTests_0jsvq6n">
+          <text>"normal"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1lcynz7">
+          <text>"good"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0utm0xv">
+          <text>"low"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="plugin_customerRiskDecision">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

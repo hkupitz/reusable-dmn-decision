@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="drdDecisionChaining" name="DRD Decision Chaining" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.14.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.19.0">
+  <decision id="drd_customerRiskDecision" name="Customer Risk">
+    <decisionTable id="DecisionTable_0z7plry">
+      <input id="Input_1" label="Customer Type">
+        <inputExpression id="InputExpression_1" typeRef="string" expressionLanguage="juel">
+          <text>customerType</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1kvhfmi" label="Customer History">
+        <inputExpression id="LiteralExpression_0omrarw" typeRef="string" expressionLanguage="juel">
+          <text>customerHistory</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Risk" name="risk" typeRef="string" />
+      <rule id="DecisionRule_0poip0z">
+        <inputEntry id="UnaryTests_0r7lsqk">
+          <text>"special"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_037gysg">
+          <text>"bad"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0c35jof">
+          <text>"medium"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0l1npf3">
+        <inputEntry id="UnaryTests_0l441tb">
+          <text>"special"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_126kxib">
+          <text>"okay", "good"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0jkjygx">
+          <text>"low"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0kmfgw0">
+        <inputEntry id="UnaryTests_12xoll6">
+          <text>"normal"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_062j9wb">
+          <text>"bad"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_17wkhms">
+          <text>"high"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_03k05wp">
+        <inputEntry id="UnaryTests_1lvsip8">
+          <text>"normal"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0xikw53">
+          <text>"okay"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_026lzri">
+          <text>"medium"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1cif5of">
+        <inputEntry id="UnaryTests_0jsvq6n">
+          <text>"normal"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1lcynz7">
+          <text>"good"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0utm0xv">
+          <text>"low"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision id="drd_customerAcceptanceDecision" name="Customer Acceptance Decision">
+    <informationRequirement id="InformationRequirement_1oyf10x">
+      <requiredDecision href="#drd_customerRiskDecision" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_1f27n8p">
+      <input id="Input_2" label="General Customer Risk">
+        <inputExpression id="InputExpression_2" typeRef="string" expressionLanguage="feel">
+          <text>risk</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1wy3aij" label="Drivers License Years" biodi:width="192">
+        <inputExpression id="LiteralExpression_1agphcw" typeRef="integer">
+          <text>driversLicenseYears</text>
+        </inputExpression>
+      </input>
+      <output id="Output_2" label="Decision" name="decision" typeRef="string" />
+      <rule id="DecisionRule_1kr3mle">
+        <inputEntry id="UnaryTests_1ldsabl">
+          <text>"high"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_16dl0fg">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1rdt192">
+          <text>"declined"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1sfifye">
+        <inputEntry id="UnaryTests_0k4bf5v">
+          <text>"medium"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1cy5oh8">
+          <text>&gt; 3</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ey6top">
+          <text>"accepted"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_12wahuj">
+        <inputEntry id="UnaryTests_00c9wto">
+          <text>"medium"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1hklb7p">
+          <text>&lt;= 3</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_03vwap8">
+          <text>"declined"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1utwezr">
+        <inputEntry id="UnaryTests_0tmcaqe">
+          <text>"low"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1x4i0ou">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ons1ec">
+          <text>"accepted"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision id="drd_customerRiskMessage" name="Customer Risk Message">
+    <variable id="InformationItem_065b9gp" name="riskMessage" typeRef="string" />
+    <informationRequirement id="InformationRequirement_15apjc0">
+      <requiredDecision href="#drd_customerRiskDecision" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0cqyuou">
+      <requiredDecision href="#drd_customerRiskDecision" />
+    </informationRequirement>
+    <literalExpression id="LiteralExpression_1r4dtmp" expressionLanguage="juel">
+      <text>risk == "high" ? "The customer has a high risk." : "The customer has an acceptable risk."</text>
+    </literalExpression>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="drd_customerRiskDecision">
+        <dc:Bounds height="80" width="180" x="310" y="260" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1mkkse5" dmnElementRef="drd_customerRiskMessage">
+        <dc:Bounds height="80" width="180" x="460" y="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape dmnElementRef="drd_customerAcceptanceDecision">
+        <dc:Bounds height="80" width="180" x="160" y="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_19t6yy7" dmnElementRef="InformationRequirement_1oyf10x">
+        <di:waypoint x="400" y="260" />
+        <di:waypoint x="250" y="180" />
+        <di:waypoint x="250" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_0udzg4g" dmnElementRef="InformationRequirement_0cqyuou">
+        <di:waypoint x="400" y="260" />
+        <di:waypoint x="550" y="180" />
+        <di:waypoint x="550" y="160" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

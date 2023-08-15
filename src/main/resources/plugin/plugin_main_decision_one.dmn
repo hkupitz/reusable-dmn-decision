@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" id="customerAcceptanceDRD" name="Customer Acceptance DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.14.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.19.0">
+  <decision id="plugin_customerAcceptanceDecision" name="Customer Acceptance Decision">
+    <decisionTable id="DecisionTable_1f27n8p">
+      <input id="Input_1" label="General Customer Risk">
+        <inputExpression id="InputExpression_1" typeRef="string" expressionLanguage="juel">
+          <text>dmn("plugin_customerRiskDecision", variableContext)</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1wy3aij" label="Drivers License Years" biodi:width="192">
+        <inputExpression id="LiteralExpression_1agphcw" typeRef="integer">
+          <text>driversLicenseYears</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Decision" name="decision" typeRef="string" />
+      <rule id="DecisionRule_1kr3mle">
+        <inputEntry id="UnaryTests_1ldsabl">
+          <text>"high"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_16dl0fg">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1rdt192">
+          <text>"declined"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1sfifye">
+        <inputEntry id="UnaryTests_0k4bf5v">
+          <text>"medium"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1cy5oh8">
+          <text>&gt; 3</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ey6top">
+          <text>"accepted"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_12wahuj">
+        <inputEntry id="UnaryTests_00c9wto">
+          <text>"medium"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1hklb7p">
+          <text>&lt;= 3</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_03vwap8">
+          <text>"declined"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1utwezr">
+        <inputEntry id="UnaryTests_0tmcaqe">
+          <text>"low"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1x4i0ou">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ons1ec">
+          <text>"accepted"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="plugin_customerAcceptanceDecision">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
